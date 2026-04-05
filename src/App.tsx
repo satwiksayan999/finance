@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './style.css';
 import { Dashboard } from './components/Dashboard';
 import { Transactions } from './components/Transactions';

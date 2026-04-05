@@ -46,7 +46,7 @@ const seedData = (): Transaction[] => {
 	];
 };
 
-export const useAppStore = create<AppState>((set, get) => ({
+export const useAppStore = create<AppState>((set) => ({
 	role: 'viewer',
 	setRole: (r) => {
 		set({ role: r });
@@ -56,17 +56,14 @@ export const useAppStore = create<AppState>((set, get) => ({
 	transactions: seedData(),
 	addTransaction: (t) => {
 		set((s) => ({ transactions: [{ id: nanoid(), ...t }, ...s.transactions] }));
-		get().persist();
 	},
 	updateTransaction: (id, t) => {
 		set((s) => ({
 			transactions: s.transactions.map((x) => (x.id === id ? { ...x, ...t } : x)),
 		}));
-		get().persist();
 	},
 	deleteTransaction: (id) => {
 		set((s) => ({ transactions: s.transactions.filter((x) => x.id !== id) }));
-		get().persist();
 	},
 
 	filters: initialFilters,
